@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultural Map | Banglar Khela</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet CSS for Interactive Spatial Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+
+  <style>
+    /* Cultural Map Specific Styles */
+    .map-section {
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .filter-btn {
+      background: #2a3828;
+      color: #e0e6ed;
+      border: 1px solid #4a5d48;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: #4a5d48;
+      color: #ffffff;
+      border-color: #8da48a;
+      box-shadow: 0 0 8px rgba(141, 164, 138, 0.4);
+    }
+
+    #map-container {
+      height: 550px;
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      z-index: 1;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    /* Custom Leaflet Dark Popup */
+    .leaflet-popup-content-wrapper {
+      background: #1b241a !important;
+      color: #f0f4f1 !important;
+      border: 1px solid #4a5d48;
+      border-radius: 8px;
+    }
+    .leaflet-popup-tip {
+      background: #1b241a !important;
+    }
+    .popup-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: #8da48a;
+      margin-bottom: 4px;
+    }
+    .popup-game {
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    /* Significance Grid Layout */
+    .significance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 1.5rem;
+    }
+
+    .sig-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 20px;
+      transition: transform 0.2s ease;
+    }
+
+    .sig-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(141, 164, 138, 0.3);
+    }
+
+    .sig-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: #8da48a;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER NAVBAR -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="logo.png" alt="Banglar Khela Logo" class="site-logo">
+        <div class="brand-title">BANGLAR KHELA <span class="bengali">বাংলার খেলা</span></div>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="archive.html">Game Archive</a></li>
+          <li><a href="oral-history.html">Oral History</a></li>
+          <li><a href="cultural-map.html" class="active">Cultural Map</a></li>
+          <li><a href="journals.html">Journals</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="dossier-container">
+
+    <header class="dossier-header-box">
+      <h1 class="dossier-title">Interactive Cultural Map <span class="bengali-title">(সাংস্কৃতিক মানচিত্র)</span></h1>
+      <p class="dossier-tagline">
+        A spatial data tool visualizing the geographic distribution, riverine linkages, and regional hotspots of traditional sports across Bangladesh.
+      </p>
+    </header>
+
+    <!-- INTERACTIVE MAP SECTION -->
+    <section class="dossier-box map-section">
+      <h2 class="box-title">Spatial Mapping & Game Distribution</h2>
+      <p class="dossier-text" style="margin-bottom: 15px;">
+        Click on any game button below to filter the map and highlight the exact geographical hubs where that sport is traditionally played.
+      </p>
+
+      <!-- GAME FILTER BAR -->
+      <div class="filter-bar" id="game-filter-bar">
+        <button class="filter-btn active" data-game="all">All Games</button>
+        <button class="filter-btn" data-game="nouka-baich">Nouka Baich (নৌকা বাইচ)</button>
+        <button class="filter-btn" data-game="kite-flying">Kite Flying (ঘুড়ি ওড়ানো)</button>
+        <button class="filter-btn" data-game="ha-du-du">Ha-du-du (হা-ডু-ডু)</button>
+        <button class="filter-btn" data-game="dariyanbandha">Dariyanbandha (দাঁড়িয়াবান্দা)</button>
+        <button class="filter-btn" data-game="sholo-guti">Sholo Guti (ষোল গুটি)</button>
+      </div>
+
+      <!-- MAP CONTAINER -->
+      <div id="map-container"></div>
+    </section>
+
+    <!-- SIGNIFICANCE & ANALYTICAL VALUE SECTION -->
+    <section class="dossier-box">
+      <h2 class="box-title">Significance of Spatial Mapping</h2>
+      <p class="dossier-text">
+        Moving beyond static text lists, digitized mapping transforms archival data into an active analytical framework for researchers, cultural ministries, and community historians.
+      </p>
+
+      <div class="significance-grid">
+        
+        <!-- Feature 1 -->
+        <div class="sig-card">
+          <h3 class="sig-title">1. Visualizes Cross-Game Connections</h3>
+          <p class="dossier-text">
+            An individual game page only presents data for a single sport (e.g., Boat Racing). A Cultural Map overlays all games simultaneously, enabling researchers to identify macro-patterns—such as noticing that Mymensingh, Greater Chittagong, or Sylhet serve as major dense hubs for multiple traditional games.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="sig-card">
+          <h3 class="sig-title">2. Reveals Geographic & Riverine Impact</h3>
+          <p class="dossier-text">
+            Text names like "Sunamganj" or "Kishoreganj" gain immediate clarity when mapped visually. Seeing pins cluster along major river basins and Haor (wetland) systems instantly explains why aquatic games like <em>Nouka Baich</em> developed there without requiring verbose text.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="sig-card">
+          <h3 class="sig-title">3. Spatial Data Tool for Policy & Preservation</h3>
+          <p class="dossier-text">
+            For cultural ministries, UNESCO researchers, and NGOs, text archives are difficult to analyze for resource allocation. This digitized map functions as a Spatial Data Tool, allowing policymakers to spot cultural "blind spots" where traditional sports are endangered and allocate targeted funding or host revival festivals.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      &copy; 2026 Banglar Khela Digital Humanities Initiative. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- LEAFLET JS SCRIPT -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  
+  <script>
+    // 1. Initialize Map Centered on Bangladesh
+    const map = L.map('map-container').setView([23.6850, 90.3563], 7);
+
+    // 2. Add Dark Tile Layer for Theme Consistency
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(map);
+
+    // 3. Game Spatial Data Points
+    const gameLocations = [
+      // Nouka Baich (Water-based / Haor & Riverine)
+      { game: 'nouka-baich', name: 'Nouka Baich', region: 'Sunamganj (Haor Hub)', lat: 25.0658, lng: 91.3950, desc: 'Major riverine race hub in the deep wetland basin.' },
+      { game: 'nouka-baich', name: 'Nouka Baich', region: 'Kishoreganj', lat: 24.4260, lng: 90.9821, desc: 'Traditional Surma-Meghna riverway racing zone.' },
+      { game: 'nouka-baich', name: 'Nouka Baich', region: 'Netrokona', lat: 24.8833, lng: 90.7333, desc: 'Folk racing watercourses connecting riverine communities.' },
+      { game: 'nouka-baich', name: 'Nouka Baich', region: 'Gopalganj', lat: 23.0058, lng: 89.8266, desc: 'Southern river network racing center during Bhadra-Ashwin.' },
+      { game: 'nouka-baich', name: 'Nouka Baich', region: 'Brahmanbaria', lat: 23.9571, lng: 91.1119, desc: 'Sarengi boat racing region along Titas River.' },
+
+      // Kite Flying (Urban Shakrain & Coastal)
+      { game: 'kite-flying', name: 'Kite Flying / Shakrain', region: 'Old Dhaka (Shakharibazar)', lat: 23.7099, lng: 90.4071, desc: 'Epicenter of urban Shakrain Poush Sankranti festival.' },
+      { game: 'kite-flying', name: 'Kite Flying', region: 'Munshiganj', lat: 23.5422, lng: 90.5305, desc: 'Autumn open-field kite flying and string-cutting duels.' },
+      { game: 'kite-flying', name: 'Kite Flying', region: 'Greater Chittagong', lat: 22.3569, lng: 91.7832, desc: 'Coastal wind field kite flying and festive gatherings.' },
+
+      // Ha-du-du (Land-based Widespread)
+      { game: 'ha-du-du', name: 'Ha-du-du', region: 'Faridpur', lat: 23.6070, lng: 89.8429, desc: 'Traditional rural Ha-du-du tournament zone.' },
+      { game: 'ha-du-du', name: 'Ha-du-du', region: 'Mymensingh', lat: 24.7471, lng: 90.4203, desc: 'Major hub for village Kabaddi matches.' },
+      { game: 'ha-du-du', name: 'Ha-du-du', region: 'Jashore', lat: 23.1664, lng: 89.2081, desc: 'Post-harvest agricultural field competition ground.' },
+      { game: 'ha-du-du', name: 'Ha-du-du', region: 'Barishal', lat: 22.7010, lng: 90.3535, desc: 'Southern riverbank rural sports cluster.' },
+
+      // Dariyanbandha (Court Grid)
+      { game: 'dariyanbandha', name: 'Dariyanbandha', region: 'Manikganj', lat: 23.8617, lng: 90.0003, desc: 'Cellular grid strategy game played in open fields.' },
+      { game: 'dariyanbandha', name: 'Dariyanbandha', region: 'Gazipur', lat: 23.9999, lng: 90.4203, desc: 'Popular school and village court game.' },
+      { game: 'dariyanbandha', name: 'Dariyanbandha', region: 'Rangpur', lat: 25.7439, lng: 89.2752, desc: 'North Bengal regional team tournament spot.' },
+
+      // Sholo Guti (Board Strategy)
+      { game: 'sholo-guti', name: 'Sholo Guti', region: 'Sylhet Division', lat: 24.8949, lng: 91.8687, desc: 'Veranda and tree-shade 37-dot grid board game.' },
+      { game: 'sholo-guti', name: 'Sholo Guti', region: 'Noakhali', lat: 22.8695, lng: 91.0993, desc: 'Household and community court strategy game.' },
+      { game: 'sholo-guti', name: 'Sholo Guti', region: 'Cumilla', lat: 23.4607, lng: 91.1809, desc: 'Engraved concrete court leisure play hub.' }
+    ];
+
+    let markers = [];
+
+    // 4. Function to Render Markers
+    function renderMarkers(selectedGame) {
+      // Clear existing markers
+      markers.forEach(m => map.removeLayer(m));
+      markers = [];
+
+      gameLocations.forEach(loc => {
+        if (selectedGame === 'all' || loc.game === selectedGame) {
+          const marker = L.circleMarker([loc.lat, loc.lng], {
+            radius: 8,
+            fillColor: '#8da48a',
+            color: '#ffffff',
+            weight: 1.5,
+            opacity: 1,
+            fillOpacity: 0.8
+          }).addTo(map);
+
+          marker.bindPopup(`
+            <div class="popup-title">${loc.region}</div>
+            <div class="popup-game">${loc.name}</div>
+            <div style="font-size: 0.85rem; color: #cbd5e1;">${loc.desc}</div>
+          `);
+
+          markers.push(marker);
+        }
+      });
+    }
+
+    // Initial Load - Show All
+    renderMarkers('all');
+
+    // 5. Filter Bar Click Handler
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        const gameFilter = this.getAttribute('data-game');
+        renderMarkers(gameFilter);
+      });
+    });
+  </script>
+
+</body>
+</html>

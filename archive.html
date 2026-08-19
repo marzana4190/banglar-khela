@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Archive | Banglar Khela</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Archive Page Specific Layout */
+    .archive-container {
+      padding: 4rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .archive-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .archive-header h1 {
+      font-size: 2.5rem;
+      color: #f59e0b;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Controls: Search Bar & Category Filter Buttons */
+    .filter-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background-color: #1e293b;
+      color: #f8fafc;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: #f59e0b;
+    }
+
+    .category-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .filter-btn {
+      background-color: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+      padding: 0.6rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background-color: #f97316;
+      color: #0f172a;
+      border-color: #f97316;
+    }
+
+    /* Clean Archive Table */
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    .archive-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      background-color: #111827;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .archive-table th {
+      background-color: #1e293b;
+      color: #f59e0b;
+      padding: 1rem 1.25rem;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .archive-table td {
+      padding: 1.25rem;
+      border-bottom: 1px solid #1e293b;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    .archive-table tr:hover {
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    /* Fixed Dossier Button Styling */
+    .dossier-btn {
+      display: inline-block;
+      background-color: transparent;
+      color: #38bdf8;
+      border: 1px solid #38bdf8;
+      padding: 0.4rem 0.85rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .dossier-btn:hover {
+      background-color: #38bdf8;
+      color: #0f172a;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION HEADER -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="logo.png" alt="Banglar Khela Logo" class="site-logo">
+        <div class="brand-title">BANGLAR KHELA <span class="bengali">বাংলার খেলা</span></div>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="archive.html" class="active">Game Archive</a></li>
+          <li><a href="oral-history.html">Oral History</a></li>
+          <li><a href="cultural-map.html">Cultural Map</a></li>
+          <li><a href="journals.html">Journals</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ARCHIVE SECTION -->
+  <main class="archive-container">
+    <div class="archive-header">
+      <h1>Traditional Game Archive</h1>
+      <p style="color: #94a3b8;">Explore and search through traditional games recorded across Bangladesh.</p>
+    </div>
+
+    <!-- FILTER & SEARCH CONTROLS -->
+    <div class="filter-controls">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search by game name, region, or type..." onkeyup="filterGames()">
+      </div>
+      <div class="category-buttons">
+        <button class="filter-btn active" onclick="filterCategory('All')">All</button>
+        <button class="filter-btn" onclick="filterCategory('Outdoor')">Outdoor</button>
+        <button class="filter-btn" onclick="filterCategory('Indoor')">Indoor</button>
+      </div>
+    </div>
+
+    <!-- GAME TABLE -->
+    <div class="table-responsive">
+      <table class="archive-table" id="gamesTable">
+        <thead>
+          <tr>
+            <th>Game Title</th>
+            <th>Category</th>
+            <th>Sub-Type</th>
+            <th>Primary Region</th>
+            <th>Dossier</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Outdoor Games -->
+          <tr data-category="Outdoor">
+            <td><strong>Ha-du-du (হা-ডু-ডু)</strong></td>
+            <td>Outdoor</td>
+            <td>Land-Based</td>
+            <td>Widespread (Faridpur, Mymensingh, Jamalpur, Jashore, Barishal, Cumilla, and Noakhali)</td>
+            <td><a href="ha-du-du.html" class="dossier-btn">View Details &rarr;</a></td>
+          </tr>
+          <tr data-category="Outdoor">
+            <td><strong>Kite Flying (ঘুড়ি ওড়ানো)</strong></td>
+            <td>Outdoor</td>
+            <td>Sky / Festive</td>
+            <td>Old Dhaka (Shakharibazar, Laxmibazar), Munshiganj, and the greater Chittagong region</td>
+            <td><a href="kite-flying.html" class="dossier-btn">View Details &rarr;</a></td>
+          </tr>
+          <tr data-category="Outdoor">
+            <td><strong>Nouka Baich (নৌকা বাইচ)</strong></td>
+            <td>Outdoor</td>
+            <td>Water-Based</td>
+            <td>Riverine Districts (Kishoreganj, Sunamganj, Netrokona, Gopalganj, Madaripur, Pabna, and Brahmanbaria)</td>
+            <td><a href="noukabaich-detail.html" class="dossier-btn">View Details &rarr;</a></td>
+          </tr>
+          <tr data-category="Outdoor">
+            <td><strong>Dariyanbandha (দাঁড়িয়াবান্ধা)</strong></td>
+            <td>Outdoor</td>
+            <td>Land-Based</td>
+            <td>Dhaka Division (Manikganj, Gazipur), Mymensingh Division (Netrokona, Kishoreganj), and North Bengal (Rangpur and Rajshahi region)</td>
+            <td><a href="dariabandhadetail.html" class="dossier-btn">View Details &rarr;</a></td>
+          </tr>
+
+          <!-- Indoor Games -->
+          <tr data-category="Indoor">
+            <td><strong>Sholo Guti (ষোল গুটি)</strong></td>
+            <td>Indoor</td>
+            <td>Board Game</td>
+            <td>Nationwide (Greater Chittagong, Noakhali, Cumilla, Sylhet, and Mymensingh region)</td>
+            <td><a href="shologuti.html" class="dossier-btn">View Details &rarr;</a></td>
+          </tr>
+          <tr data-category="Indoor">
+            <td><strong>Ludo (লুডু)</strong></td>
+            <td>Indoor</td>
+            <td>Board Game</td>
+            <td>Household / Family</td>
+            <td><a href="ludo-detail.html" class="dossier-btn">View Details &rarr;</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- JAVASCRIPT FOR LIVE SEARCH & CATEGORY FILTERING -->
+  <script>
+    let currentCategory = 'All';
+
+    function filterCategory(category) {
+      currentCategory = category;
+      
+      // Update active button state
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => {
+        if(btn.innerText === category) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      filterGames();
+    }
+
+    function filterGames() {
+      const searchInput = document.getElementById('searchInput').value.toLowerCase();
+      const rows = document.querySelectorAll('#gamesTable tbody tr');
+
+      rows.forEach(row => {
+        const gameCategory = row.getAttribute('data-category');
+        const textContent = row.innerText.toLowerCase();
+
+        const matchesCategory = (currentCategory === 'All' || gameCategory === currentCategory);
+        const matchesSearch = textContent.includes(searchInput);
+
+        if (matchesCategory && matchesSearch) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

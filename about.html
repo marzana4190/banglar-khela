@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Banglar Khela</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Specific Box Styling for About Page Components */
+    .objectives-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 1.5rem;
+    }
+
+    .objective-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 20px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .objective-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(141, 164, 138, 0.4);
+    }
+
+    .obj-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: #8da48a;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .obj-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .quote-block {
+      background: rgba(141, 164, 138, 0.08);
+      border-left: 4px solid #8da48a;
+      padding: 15px 20px;
+      margin: 15px 0;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      color: #e0e6ed;
+    }
+
+    .ethical-point {
+      margin-top: 15px;
+    }
+
+    .ethical-point strong {
+      color: #8da48a;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER NAVBAR -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="logo.png" alt="Banglar Khela Logo" class="site-logo">
+        <div class="brand-title">BANGLAR KHELA <span class="bengali">বাংলার খেলা</span></div>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="archive.html">Game Archive</a></li>
+          <li><a href="oral-history.html">Oral History</a></li>
+          <li><a href="cultural-map.html">Cultural Map</a></li>
+          <li><a href="journals.html">Journals</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN DOSSIER CONTAINER -->
+  <main class="dossier-container">
+
+    <!-- Hero Box: Preserving Living Heritage -->
+    <header class="dossier-header-box">
+      <h1 class="dossier-title">Preserving Living Heritage</h1>
+      <p class="dossier-tagline">
+        Banglar Khela is a community-driven digital humanities initiative dedicated to preserving traditional Bangladeshi folk games. Beyond recording static rules, our archive safeguards the living, embodied practices and regional oral knowledge that give these traditions their cultural life.
+      </p>
+    </header>
+
+    <!-- Box 1: Why We Built This Website -->
+    <section class="dossier-box">
+      <h2 class="box-title">Why We Built This Website</h2>
+      <p class="dossier-text">
+        With the rapid rise of digital games, open playground commercialization, and urban expansion, traditional native games are being systematically erased by globalized media.
+      </p>
+      <p class="dossier-text">
+        While tangible artifacts like monuments and manuscripts are preserved in institutional archives, intangible folk games receive little digital preservation. Without action to record these living practices, indigenous traditions risk vanishing within three generations.
+      </p>
+    </section>
+
+    <!-- Box 2: Our Aim & Objectives -->
+    <section class="dossier-box">
+      <h2 class="box-title">Our Aim & Objectives</h2>
+      <p class="dossier-text">
+        We aim to safeguard intangible play heritage by anchoring local memory into sustainable digital storage:
+      </p>
+
+      <div class="objectives-grid">
+        <!-- Objective 1 -->
+        <div class="objective-card">
+          <div class="obj-number">01</div>
+          <h3 class="obj-title">Document Living Heritage</h3>
+          <p class="dossier-text">
+            Record traditional games, regional variants, and oral rhymes directly from local practitioners.
+          </p>
+        </div>
+
+        <!-- Objective 2 -->
+        <div class="objective-card">
+          <div class="obj-number">02</div>
+          <h3 class="obj-title">Open Academic Repository</h3>
+          <p class="dossier-text">
+            Provide a free, public archive for students, researchers, and cultural enthusiasts worldwide.
+          </p>
+        </div>
+
+        <!-- Objective 3 -->
+        <div class="objective-card">
+          <div class="obj-number">03</div>
+          <h3 class="obj-title">Digital Humanities Advocacy</h3>
+          <p class="dossier-text">
+            Demonstrate how digital platforms can actively safeguard endangered indigenous knowledge.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Box 3: What We Believe & Ethical Commitment -->
+    <section class="dossier-box">
+      <h2 class="box-title">What We Believe & Ethical Commitment</h2>
+      <p class="dossier-text">
+        We believe native games are not mere pastimes—they are living expressions of community identity, bodily memory, and oral heritage.
+      </p>
+
+      <div class="quote-block">
+        "Grounded in Jan Assmann’s theory of Cultural Memory, we recognize that everyday folk practices require institutional digital forms to transition from temporary communicative memory into stable, long-term heritage."
+      </div>
+
+      <div class="ethical-point">
+        <p class="dossier-text">
+          <strong>Ethical Consent:</strong> We prioritize community partnership and informed consent. All oral histories, photographs, and audio recordings are collected respectfully, giving fair credit and protecting local communities from misrepresentation or commercial exploitation.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      &copy; 2026 Banglar Khela. Digital Humanities Cultural Preservation Project.
+    </div>
+  </footer>
+
+</body>
+</html>

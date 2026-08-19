@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BANGLAR KHELA | Oral History Vault</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ==========================================================================
+      1. HEADER & NAVIGATION
+      ========================================================================== -->
+
+      <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="logo.png" alt="Banglar Khela Logo" class="site-logo">
+        <div class="brand-title">
+          BANGLAR KHELA <span class="bengali">বাংলার খেলা</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="archive.html">Game Archive</a>
+        <a href="oral-history.html">Oral History</a>
+        <a href="cultural-map.html">Cultural Map</a>
+        <a href="journals.html" class="active">Journals</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+
+    <div class="header-title">
+      <h1>Oral History Vault</h1>
+      <p class="subtitle">Preserving Voices, Memories, and Heritage of Traditional Games</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- SECTION 1: Text Interview (Mr. Farooq) -->
+    <article class="card">
+      <div class="card-header">
+        <span class="badge badge-text">TEXT ARCHIVE</span>
+        <h2 class="card-title">Shakrain Festival Memories</h2>
+      </div>
+      <div class="orator-info">
+        <p><strong>Orator:</strong> Mr. Farooq</p>
+        <p><strong>Game:</strong> Shakrain / Kite Flying </p>
+        <p><strong>Location:</strong> Old Dhaka</p>
+      </div>
+      <blockquote class="transcript-excerpt">
+        <p>"In the past, preparations would begin months before the festival. We used to make our own kites and apply glass-coated starch (manja) to the strings ourselves. Now, most people buy ready-made kites. As a result, it can be said that Shakrain has now become a one-day festival."</p>
+        <p>"Back then, there weren't so many sources of entertainment. There were no mobile phones or the internet either. So, young and old alike waited eagerly for this day. It was a completely different feeling."</p>
+      </blockquote>
+      <div class="ethical-note">
+        <span>✓ Oral Interview Consent Obtained</span>
+      </div>
+    </article>
+
+    <!-- SECTION 2: Audio Interview (Rusel Kazi) -->
+    <article class="card">
+      <div class="card-header">
+        <span class="badge badge-audio">AUDIO ARCHIVE</span>
+        <h2 class="card-title">Memories of Noukabaich</h2>
+      </div>
+      <div class="orator-info">
+        <p><strong>Orator:</strong> Rusel Kazi</p>
+        <p><strong>Game:</strong> Noukabaich / Boat Race</p>
+        <p><strong>Location:</strong> Boroitola, Barishal</p>
+        <p><strong>Audio File:</strong> <code>interviewrusel.m4a</code></p>
+      </div>
+      <div class="audio-wrapper">
+        <audio controls class="custom-audio">
+          <source src="interviewruselkazi.m4a" type="audio/mp4">
+          <source src="interviewruselkazi.m4a" type="audio/x-m4a">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+      <div class="ethical-note">
+        <span>✓ Voice Recording Consent Verified</span>
+      </div>
+    </article>
+
+    <!-- ==========================================================================
+       SECTION 3: ORAL HISTORY ENTRY: ROHUL AMIN (MYMENSINGH)
+       ========================================================================== -->
+    <article class="card">
+      <div class="card-header">
+        <span class="badge badge-text">FIELD RECORDING TRANSCRIPT</span>
+        <h2 class="card-title" style="font-size: 1.5rem; margin-top: 0.5rem; margin-bottom: 0.25rem;">
+          Past Memories of Traditional Games in Mymensingh
+        </h2>
+      </div>
+
+      <p class="interview-meta">Recorded in Mymensingh • Field Oral History Archive</p>
+
+      <div class="orator-info" style="margin-bottom: 1rem;">
+        <p><strong>Orator:</strong> Rohul Amin</p>
+        <p><strong>Location:</strong> Mymensingh, Bangladesh</p>
+        <p><strong>Game:</strong> Dariabandha</p>
+      </div>
+
+      <!-- Styled Transcript Block (Matching Mr. Farooq's Design) -->
+      <blockquote class="transcript-excerpt">
+        <p>"Back in the day, we used to play this a lot in Mymensingh. People our age would gather on open fields, draw lines on the ground, and play these games together. Sometimes, they were organized on a grand scale."</p>
+        <p>"The objective of capturing land by defeating opponents in this game is often seen as a reflection of feudal mindsets, where feudal lords established power by forcibly occupying others' territory. Experts also suggest that the game may have originated from real-life social experiences of salt theft and catching thieves—where the thief steals salt from the salt house (<em>nun-ghor</em>) to stack it in their hideout (<em>gadi-ghor</em>), while the guard attempts to thwart them."</p>
+      </blockquote>
+
+      <!-- Verification Badge -->
+      <div class="ethical-note">
+        <span>✓ Voice Recording Consent Verified</span>
+      </div>
+    </article>
+
+    <!-- SECTION 4: Submission Form (At the Bottom) -->
+    <section class="submission-card">
+      <h2>Share Your Memory & Oral History</h2>
+      <p class="section-desc">Did you play or witness traditional games in Bangladesh? Submit your story, audio account, or research memory to be archived.</p>
+
+      <form class="memory-form" onsubmit="event.preventDefault(); alert('Thank you! Your memory submission has been queued for archival review.');">
+        
+        <div class="form-group">
+          <label for="oratorName">Orator / Contributor Name </label>
+          <input type="text" id="oratorName" placeholder="e.g., Mr. Farooq / Dr. Nusrat Jahan" required>
+        </div>
+
+        <div class="form-group">
+          <label for="gameName">Game Name </label>
+          <input type="text" id="gameName" placeholder="e.g., Ha-du-du, Dariabandha, Shakrain, Kanamachi" required>
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location / Region (Optional)</label>
+          <input type="text" id="location" placeholder="e.g., Old Dhaka, Sylhet, Pabna">
+        </div>
+
+        <div class="form-group">
+          <label for="mediaUrl">Link to Recording / Video (Optional)</label>
+          <input type="url" id="mediaUrl" placeholder="https://drive.google.com/file/...">
+        </div>
+
+        <div class="form-group">
+          <label for="memoryDetails">Memory Details & Narrative </label>
+          <textarea id="memoryDetails" rows="4" placeholder="Provide a brief account of the memory, game context, or personal experience..." required></textarea>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <input type="checkbox" id="ethicalConsent" required>
+          <label for="ethicalConsent"><strong>Ethical Consent </strong>: I confirm full consent to share this personal history for public archival preservation.</label>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Memory for Archival Review &rarr;</button>
+
+        <p class="thank-you-msg">Thank you! Your research submission has been queued for editorial review.</p>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Banglar Khela • Oral History Vault</p>
+    </div>
+  </footer>
+
+</body>
+</html>
