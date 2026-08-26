@@ -933,27 +933,31 @@ th, td {
   margin-top: 2rem;
 }
 
+/* MATCH HEADER GREEN EXACTLY */
+.stats-section {
+  background-color: #0b140d !important;
+  padding: 3rem 1rem !important;
+}
+
 .stat-card {
-  background-color: #1a291e !important; /* Header dark green color */
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 12px;
-  padding: 1.5rem;
-  min-width: 200px;
-  flex: 1;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background-color: #1a291e !important; /* Exact match for your header bar green */
+  border: 1px solid #2d4533 !important;
+  border-radius: 12px !important;
+  padding: 1.5rem !important;
+  min-width: 200px !important;
+  flex: 1 !important;
+  text-align: center !important;
 }
 
 .stat-number {
-  font-size: 2.2rem;
-  font-weight: bold;
-  color: #ffffff;
-  margin: 0.5rem 0;
+  color: #f59e0b !important; /* Matches your header gold/amber text */
+  font-size: 2.2rem !important;
+  font-weight: bold !important;
 }
 
 .stat-label {
-  color: #a0aec0;
-  font-size: 0.95rem;
+  color: #e2e8f0 !important;
+  font-size: 0.95rem !important;
 }
 
 /* ==========================================================================
