@@ -934,13 +934,14 @@ th, td {
 }
 
 .stat-card {
-  background-color: #112225 !important; /* Dark card color */
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #1a291e !important; /* Header dark green color */
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
   border-radius: 12px;
   padding: 1.5rem;
   min-width: 200px;
   flex: 1;
   text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .stat-number {
